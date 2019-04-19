@@ -1,0 +1,3 @@
+{{data?.name}}
+<button (click)="deleteCustomers(data.id)">Delete</button>
+<button [routerLink]="['/update', data?.id]">Edit</button>

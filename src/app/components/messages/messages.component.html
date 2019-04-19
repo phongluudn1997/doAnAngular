@@ -1,0 +1,15 @@
+<div *ngIf="messageService.messages.length" class="alert">
+  <!-- <div *ngFor='let message of messageService.messages'>
+    <div [ngClass]="{ 'alert' : 'messageService.messages.length' ,'alert-success' : 'message.type' === 'success', 'alert-danger' : 'message.type' === 'error' }">{{message.content}}</div> 
+  </div> -->
+  <div  *ngFor='let message of messageService.messages' class="text-center ">
+    <div *ngIf=" message.type === 'success' " class="alert alert-success alert-dismissible fade show">
+      {{message.content}}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <div *ngIf=" message.type === 'error' " class="alert alert-danger alert-dismissible fade show">{{message.content}}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+  </div>
+</div>
+<!-- <div *ngIf="messageService.messages.length" [ngClass]="{ 'alert' : 'messageService.messages.length' ,'alert-success' : 'message.type' === 'success', 'alert-danger' : 'message.type' === 'error' }">{{message.content}}></div> -->

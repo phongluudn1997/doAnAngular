@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="m-3">
+    <h5>Đơn hàng của tôi</h5>
+  </div>
+  <div>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Mã đơn hàng</th>
+          <th>Ngày mua</th>
+          <th>Sản phẩm</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of [].constructor(10)">
+          <td><a href="myOrder/431258">431258</a></td>
+          <td>17/3/2019</td>
+          <td>Harry Potter và Bảo bối tử thần</td>
+          <td>500.000đ</td>
+          <td>Thành công</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

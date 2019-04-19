@@ -1,0 +1,130 @@
+<script src="../../../assets/js/custom.js"></script>
+<mat-horizontal-stepper labelPosition="bottom" linear>
+
+  <!-- Mat-step-1 -->
+
+  <mat-step label="Địa Chỉ Giao Hàng">
+    <div class="my-3 mb-5">
+      <form [formGroup]="">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="">Tên người nhận</label>
+            <input type="text" class="form-control" value="Huỳnh Phong Lưu">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">Số điện thoại</label>
+            <input type="text" class="form-control" value="0789390224">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Địa chỉ</label>
+          <input type="text" class="form-control" value="K69/04 Ngô Thì Nhậm, Quận Liên Chiểu, TP.Đà Nẵng">
+        </div>
+      </form>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-outline-success px-5" matStepperNext>Tiếp Theo</button>
+    </div>
+
+  </mat-step>
+
+  <!-- Mat-step-2 -->
+
+  <mat-step label="Thanh Toán & Đặt Mua" labelPosition="bottom">
+    <div class="row my-3 mb-5 ">
+
+      <!-- Payment Method -->
+
+      <div class="col-md-4 col-sm-12 mb-3 col-12">
+        <form>
+          <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="TienMat" name="example1" checked data-toggle="collapse"
+              data-target="#collapseExample.show">
+            <label class="custom-control-label" for="TienMat">Thanh toán tiền mặt khi nhận hàng</label>
+          </div>
+          <div class="my-5 custom-control custom-radio">
+            <input data-toggle="collapse" data-target="#collapseExample:not(.show)" type="radio"
+              class="custom-control-input" id="Paypal" name="example1">
+            <label class="custom-control-label" for="Paypal">Thanh toán bằng Paypal</label>
+          </div>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <fieldset disabled>
+                <div class="form-group">
+                  <label for="">Tên</label>
+                  <input type="text" class="form-control" placeholder="Huỳnh Phong Lưu">
+                </div>
+                <div class="form-group">
+                  <label for="">Số thẻ</label>
+                  <input type="text" class="form-control" placeholder="123 456 7890">
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Address -->
+
+      <div class="col-md-4 col-sm-6 px-4 mb-3 col-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+              <span class="align-middle my-auto">Địa chỉ giao hàng</span>
+              <button matStepperPrevious class="btn btn-outline-secondary">Sửa</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">
+              Huỳnh Phong Lưu
+            </h5>
+            <small class="card-text">
+              K69/04 Ngô Thì Nhậm, Quận Liên Chiểu, TP.Đà Nẵng
+              <br>
+              Điện thoại: 0789 390 224
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart -->
+
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="row">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex justify-content-between">
+                <span class="align-middle my-auto">Đơn hàng</span>
+                <a href="/cart" class="btn btn-outline-secondary">Sửa</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tr *ngFor="let index of [].constructor(3)">
+                  <td>
+                    <small>1 x Điện thoại Samsung Galaxy S9</small>
+                  </td>
+                  <td>
+                    <small>9.0000.000 đ</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <small>Thành tiền</small>
+                  </td>
+                  <td>
+                    <h5 class="text-danger">30.000.000đ</h5>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-around">
+      <button class="px-5 btn btn-outline-danger" matStepperPrevious>Lui lại</button>
+      <button class="px-5 btn btn-outline-success" matStepperNext>Thanh Toán</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

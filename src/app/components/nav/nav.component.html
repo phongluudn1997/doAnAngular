@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-md navbar-light background justify-content-between">
+  <a class="navbar-brand" href="#">
+    <img style="height: 50px;" src="../../../assets/img/logo4.png" alt="Shopping Mall">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <form class="form-inline d-none d-md-block" action="/action_page.php">
+    <input class="form-control mr-sm-2 form-control" type="text" placeholder="Tìm sản phẩm, tên shop">
+    <button class="btn btn-outline-light" type="submit"><i style="vertical-align: middle"
+        class="material-icons">search</i></button>
+  </form>
+
+  <!-- <form style="display: contents" class="input-group mr-2">
+    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+      aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-success" type="button">
+        <i style="vertical-align: middle" class="material-icons">search</i>
+      </button>
+    </div>
+  </form> -->
+
+  <div class="mr-3 d-none d-md-block ml-2">
+    <a href="login" ><button *ngIf="!authService.isLoggedIn()" class="mr-1 btn btn-outline-light" type="button">Login</button></a>
+    <!-- Example single danger button -->
+    <div *ngIf="authService.isLoggedIn()" class="btn-group mr-1">
+      <button type="button" class="btn btn-info">
+        Welcome!
+      </button>
+      <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/profile">Tài khoản của tôi</a>
+        <a class="dropdown-item" href="/myOrder">Đơn hàng của tôi</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <button (click)="authService.logout()" class="btn dropdown-item">Log out</button>
+      </div>
+    </div>
+    <a href="/cart" class="btn btn-outline-light">
+      <i style="vertical-align: middle" class="material-icons">shopping_cart</i>
+      Shopping Cart
+      <span class="badge badge-warning">3</span>
+    </a>
+  </div>
+</nav>
+
+
+
+<div class="collapse navbar-collapse bg-warning px-2 pb-1 d-md-none" id="navbarCollapse">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item my-1">
+      <form style="display: grid" class="form-inline" action="/action_page.php">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
+    </li>
+    <li *ngIf="!authService.isLoggedIn()" class="nav-item my-1">
+      <a href="/login" class="mr-1 btn btn-outline-light">Login</a>
+    </li>
+    <li *ngIf="authService.isLoggedIn()" class="nav-item my-1">
+      Welcome!
+    </li>
+    <li class="nav-item my-1">
+      <a href="/cart" class="btn btn-outline-success">
+        <i style="vertical-align: middle" class="material-icons">shopping_cart</i>
+        Shopping Cart
+        <span class="badge badge-warning">3</span>
+      </a>
+    </li>
+  </ul>
+</div>
