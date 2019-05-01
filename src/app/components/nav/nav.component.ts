@@ -7,9 +7,14 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class NavComponent implements OnInit {
 
+  userName: String = localStorage.getItem('userName');
+  
   constructor(private authService: AuthenticationService) { }
 
+  
   ngOnInit() {
+    console.log(this.userName);
+    const hello = 123;
   }
 
 }

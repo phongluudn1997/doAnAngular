@@ -19,7 +19,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatStepperModule } from '@angular/material/stepper';
 
 import { AppComponent } from './app.component';
-import { CustomerListComponent } from './components/customer-list/customer-list.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { CustomerCreateComponent } from './components/customer-create/customer-create.component';
 import { CustomerUpdateComponent } from './components/customer-update/customer-update.component';
@@ -31,21 +30,22 @@ import { NavComponent } from './components/nav/nav.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CatalogCarouselComponent } from './components/catalog-carousel/catalog-carousel.component';
-import { BodyTemplateCatalogComponent } from './template/body-template-catalog/body-template-catalog.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { MyOrderComponent } from './components/my-order/my-order.component';
-import { MyOrderDetailComponent } from './components/my-order-detail/my-order-detail.component'
+import { MyOrderDetailComponent } from './components/my-order-detail/my-order-detail.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerListComponent,
     CustomerDetailsComponent,
     CustomerCreateComponent,
+    CategoryListComponent,
     CustomerUpdateComponent,
     MessagesComponent,
     LoginComponent,
@@ -53,14 +53,14 @@ import { MyOrderDetailComponent } from './components/my-order-detail/my-order-de
     CarouselComponent,
     RegisterComponent,
     CatalogCarouselComponent,
-    BodyTemplateCatalogComponent,
     ProductDetailsComponent,
     FooterComponent,
     ShoppingCartComponent,
     CheckoutComponent,
     UserProfileComponent,
     MyOrderComponent,
-    MyOrderDetailComponent
+    MyOrderDetailComponent,
+    ProductListComponent,
   ],
   imports: [
     AppRoutingModule,

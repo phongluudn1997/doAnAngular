@@ -12,48 +12,34 @@
         <h4 class="font-weight-bold">Thông tin tài khoản</h4>
       </div>
 
-      <form>
+      <form [formGroup]="userProfileForm" (ngSubmit) = "onSubmit()">
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Họ & tên</label>
           <div class="col-sm-10">
-            <input class="form-control" value="Huỳnh Phong Lưu">
+            <input class="form-control" formControlName='fullname'>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">SĐT</label>
           <div class="col-sm-10">
-            <input class="form-control" value="0789 390 224">
+            <input class="form-control" formControlName = 'phone'>
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-10">
-            <input class="form-control" value="test@test.com" disabled>
-          </div>
-        </div>
-
-        <div class="row form-group">
-          <label class="col-sm-2">Giới tính</label>
-          <div class="col-sm-10">
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline1">Nam</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-              <label class="custom-control-label" for="customRadioInline2">Nữ</label>
-            </div>
+            <input class="form-control" formControlName = 'email' disabled >
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Địa chỉ</label>
           <div class="col-sm-10">
-            <input class="form-control" value="K69/04 Ngô Thì Nhậm, Liên Chiểu, Đà Nẵng">
+            <input class="form-control" formControlName = 'address'>
           </div>
         </div>
-        <button type="button" class="btn btn-block btn-primary mt-5">Cập nhật</button>
+        <button class="btn btn-block btn-primary mt-5">Cập nhật</button>
       </form>
     </div>
   </div>

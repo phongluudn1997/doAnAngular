@@ -3,11 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const HttpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'apikey': 'nhadatdn'
   })
 }
 
@@ -17,32 +17,38 @@ const HttpOptions = {
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  server: string = 'http://nhadatdn-api.herokuapp.com';
-  constructor(private http: HttpClient) { }
+  server: string = 'http://shop-bkdn.j.layershift.co.uk/api';
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(phone: string, pass: string) {
-    return this.http.post<any>(this.server + '/user/login', { phoneNumber: phone, password: pass }, HttpOptions)
+  login(username: string, password: string) {
+    return this.http.post<any>(this.server + '/login', { username: username, password: password }, HttpOptions)
   }
 
 
   isLoggedIn(){
-    return !!localStorage.getItem('token');
+   // return !!localStorage.getItem('token');
+   return localStorage.getItem('userId')
   }
-
+  
   loginTest(user){
     return this.http.post<any>('http://localhost:3000' + '/api/users/login', user, HttpOptions);
   }
 
   register(user){
-    return this.http.post<any>(this.server + 'user/register', user, HttpOptions);
+    return this.http.post<any>(this.server + 'account/register', user, HttpOptions);
   }
 
   getToken(){
     return localStorage.getItem('token');
   }
 
+  getUserId(){
+    return localStorage.getItem('userId');
+  }
+
   logout(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    this.router.navigateByUrl('/')
   }
 
   getUpdate(){

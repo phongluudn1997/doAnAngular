@@ -19,13 +19,13 @@
 
       <div id="catalogCollapse" class="collapse">
         <ul class="list-group list-group-flush">
-          <li *ngFor="let i of [1,2,3,4,5]" class="list-group-item">Danh mục con {{i}}</li>
+          <li *ngFor="let cat of catList" class="list-group-item">{{cat?.name}}</li>
         </ul>
       </div>
 
       <div class="d-none d-md-block">
         <ul class="list-group list-group-flush">
-          <li *ngFor="let i of [1,2,3,4,5]" class="list-group-item">Danh mục con {{i}}</li>
+          <li *ngFor="let cat of catList" class="list-group-item">{{cat?.name}}</li>
         </ul>
       </div>
 
@@ -51,19 +51,20 @@
       </div>
       <!-- Product -->
       <div class="row">
-        <div *ngFor="let i of collection | paginate:{ itemsPerPage: 12, currentPage: p }"
+        <div *ngFor="let product of products | paginate:{ itemsPerPage: 12, currentPage: p }"
           class="col-lg-3 col-md-4 col-6">
-          <div class="card my-2">
+          <a href="/product-detail/{{product?.id}}" class="card my-2">
             <img class="card-img-top" src="https://via.placeholder.com/150" alt="">
             <div class="card-body">
-              <h5 class="card-title"> Product Name {{i}}</h5>
+              <h5 class="card-title"> {{product?.name}}</h5>
             </div>
             <div class="card-footer">
-              Create at TIME
+              Created at {{product?.created_at}}
             </div>
-          </div>
+          </a>
         </div>
       </div>
+      <div>{{collection}}</div>
     </div>
   </div>
   <!-- pagination -->
