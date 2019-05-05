@@ -24,21 +24,19 @@ export class UserProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.userProfileForm = new FormGroup({
-      address: new FormControl({ value: '', }),
-      fullname: new FormControl({ value: '' }),
-      phone: new FormControl({ value: '' }),
-      email: new FormControl({ value: '' })
+    this.userProfileForm = this.formBuidler.group({
+      fullName: [],
+      address: [''],
+      phoneNumber: [''],
+      email: ['']
     })
-    // this.userProfileForm = this.formBuidler.group({
-    //   address: [''],
-    //   fullname: '',
-    //   phone: '',
-    //   email : ['',]
-    // })
     this.userService.getUserInfo(localStorage.getItem('userId')).subscribe(next => {
-      this.user = next.profile;
-      this.userProfileForm.patchValue(this.user)
+      this.user = next.user;
+      console.log(this.user);
+      this.userProfileForm.controls.fullName.setValue(this.user.fullName);
+      this.f.address.setValue(this.user.address);
+      this.f.phoneNumber.setValue(this.user.phoneNumber);
+      this.f.email.setValue(this.user.email)
     })
 
   }
@@ -49,7 +47,7 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit() {
     console.log(this.userProfileForm.value);
-    this.userService.updateUserInfo(localStorage.getItem('userId'), this.userProfileForm.value)
+    this.userService.updateUserInfo( this.userProfileForm.value)
       .subscribe(
         (next) => {
           console.log(next);

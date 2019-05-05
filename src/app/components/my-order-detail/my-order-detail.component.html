@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-around my-3">
-  <h4>Chi tiết đơn hàng - #431258</h4>
-  <span>Ngày đặt hàng: 17/3/2019</span>
+  <h4>Chi tiết đơn hàng - #{{order?._id}}</h4>
+  <span>Ngày đặt hàng: {{order?.created_at}}</span>
 </div>
 
 <div class="row">
@@ -8,8 +8,8 @@
     <div class="card bg-light">
       <div class="card-header">ĐỊA CHỈ NGƯỜI NHẬN</div>
       <div class="card-body">
-        <h5 class="card-title">HUỲNH PHONG LƯU</h5>
-        <p class="card-text">Địa chỉ: K69/04 Ngô Thì Nhậm, Liên Chiểu, Đà Nẵng</p>
+        <h5 class="card-title">{{order?.userNhanHang.fullName}}</h5>
+        <p class="card-text">Địa chỉ: {{order?.userNhanHang.address}}</p>
       </div>
     </div>
   </div>
@@ -34,16 +34,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let i of [].constructor(3)">
+      <tr *ngFor="let item of order?.items">
         <td>
           <div>
-            <img style="vertical-align:middle" src="https://placehold.it/60x60" class="rounded img-thumbnail mr-3">
-            <span>Harry Potter Và Bảo Bối Tử Thần</span>
+            <img style="vertical-align:middle; max-height: 150px" src={{item.image}} class="rounded img-thumbnail mr-3">
+            <span>{{item.name.slice(0,30)}}...</span>
           </div>
         </td>
-        <td class="align-middle">500.000đ</td>
-        <td class="align-middle">1</td>
-        <td class="align-middle">500.000đ</td>
+        <td class="align-middle">{{item.price}}</td>
+        <td class="align-middle">{{item.quantity}}</td>
+        <td class="align-middle">{{item.pricePerProduct}}</td>
       </tr>
     </tbody>
     <tfoot>
@@ -51,7 +51,7 @@
         <td></td>
         <td></td>
         <td><span class="">Tổng cộng</span></td>
-        <td><h5 class="text-danger">1.500.000đ</h5></td>
+        <td><h5 class="text-danger">{{order?.total_price}}</h5></td>
       </tr>
     </tfoot>
   </table>

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 const HttpOptions = {
@@ -17,21 +16,20 @@ const HttpOptions = {
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  server: string = 'http://shop-bkdn.j.layershift.co.uk/api';
+  server: string = 'http://localhost:3000/api/users';
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(this.server + '/login', { username: username, password: password }, HttpOptions)
+  login(email: string, password: string) {
+    return this.http.post<any>(this.server + '/login', { email: email, password: password }, HttpOptions)
   }
 
 
   isLoggedIn(){
-   // return !!localStorage.getItem('token');
-   return localStorage.getItem('userId')
-  }
-  
-  loginTest(user){
-    return this.http.post<any>('http://localhost:3000' + '/api/users/login', user, HttpOptions);
+    return !!localStorage.getItem('token');
+  //  if(localStorage.getItem('token') === null){
+  //    return false;
+  //  }
+  //  return true
   }
 
   register(user){
@@ -47,8 +45,12 @@ export class AuthenticationService {
   }
 
   logout(){
-    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
     this.router.navigateByUrl('/')
+  }
+
+  getUserInfo(id){
+    return this.http.get(`${this.server}/${id}`)
   }
 
   getUpdate(){

@@ -11,14 +11,14 @@ const httpOptions = {
 export class UserService {
 
 
-  server: string = 'http://shop-bkdn.j.layershift.co.uk/api/account';
+  server: string = 'http://localhost:3000/api/users';
   constructor(private http: HttpClient) { }
 
   getUserInfo(id:string){
     return this.http.get<any>(`${this.server}/${id}`);
   }
 
-  updateUserInfo(id: string, user: any){
-    return this.http.put<any>(`${this.server}/${id}`, user, httpOptions);
+  updateUserInfo(user){
+    return this.http.put<any>(`${this.server}/update`, user, httpOptions);
   }
 }

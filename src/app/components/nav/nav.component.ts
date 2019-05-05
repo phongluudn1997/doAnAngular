@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -7,14 +9,31 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class NavComponent implements OnInit {
 
-  userName: String = localStorage.getItem('userName');
-  
-  constructor(private authService: AuthenticationService) { }
+  constructor(
+    private authService: AuthenticationService,
+    private cartService: CartService,
+    private toast: ToastrService) { }
 
-  
+  name: string;
+  cartQuantity: Number;
+
   ngOnInit() {
-    console.log(this.userName);
-    const hello = 123;
+    if (this.authService.isLoggedIn()) {
+      this.authService.getUserInfo((localStorage.getItem('userId'))).subscribe(next => {
+        this.name = next['user']['fullName'].split();
+      }, err => {
+        console.log(err)
+      })
+      this.cartService.getCartOfUser().subscribe(cart => {
+        console.log(cart)
+        this.cartQuantity = cart['cart']['total_quantity'];
+        console.log(this.cartQuantity)
+      }, err => {
+        console.log(err)
+        this.toast.error("Something wrong", "Failed")
+      })
+    }
+
   }
 
 }

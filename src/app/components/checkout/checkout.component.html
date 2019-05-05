@@ -5,20 +5,20 @@
 
   <mat-step label="Địa Chỉ Giao Hàng">
     <div class="my-3 mb-5">
-      <form [formGroup]="">
+      <form [formGroup]="addressForm">
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="">Tên người nhận</label>
-            <input type="text" class="form-control" value="Huỳnh Phong Lưu">
+            <input type="text" class="form-control" formControlName="fullName">
           </div>
           <div class="form-group col-md-3">
             <label for="">Số điện thoại</label>
-            <input type="text" class="form-control" value="0789390224">
+            <input type="text" class="form-control"  formControlName = "phoneNumber">
           </div>
         </div>
         <div class="form-group">
           <label for="">Địa chỉ</label>
-          <input type="text" class="form-control" value="K69/04 Ngô Thì Nhậm, Quận Liên Chiểu, TP.Đà Nẵng">
+          <input type="text" class="form-control" formControlName="address">
         </div>
       </form>
     </div>
@@ -76,12 +76,12 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">
-              Huỳnh Phong Lưu
+              {{addressForm.controls.fullName.value}}
             </h5>
             <small class="card-text">
-              K69/04 Ngô Thì Nhậm, Quận Liên Chiểu, TP.Đà Nẵng
+                {{addressForm.controls.address.value}}
               <br>
-              Điện thoại: 0789 390 224
+              Điện thoại: {{addressForm.controls.phoneNumber.value}}
             </small>
           </div>
         </div>
@@ -100,12 +100,12 @@
             </div>
             <div class="card-body">
               <table class="table">
-                <tr *ngFor="let index of [].constructor(3)">
+                <tr *ngFor="let item of cart?.items">
                   <td>
-                    <small>1 x Điện thoại Samsung Galaxy S9</small>
+                    <small>{{item.quantity}} x {{item.name}}</small>
                   </td>
                   <td>
-                    <small>9.0000.000 đ</small>
+                    <h6>{{item.price}}</h6>
                   </td>
                 </tr>
                 <tr>
@@ -113,7 +113,7 @@
                     <small>Thành tiền</small>
                   </td>
                   <td>
-                    <h5 class="text-danger">30.000.000đ</h5>
+                    <h5 class="text-danger">{{cart?.total_price}}</h5>
                   </td>
                 </tr>
               </table>
@@ -124,7 +124,7 @@
     </div>
     <div class="d-flex justify-content-around">
       <button class="px-5 btn btn-outline-danger" matStepperPrevious>Lui lại</button>
-      <button class="px-5 btn btn-outline-success" matStepperNext>Thanh Toán</button>
+      <button (click)="Order()" class="px-5 btn btn-outline-success" matStepperNext>Thanh Toán</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

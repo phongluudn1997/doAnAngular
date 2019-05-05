@@ -2,21 +2,25 @@
   <!-- Giỏ hàng  -->
   <div class="col-md-9 col-12">
     <table class="table">
-      <tr *ngFor="let index of [].constructor(3)">
+      <tr *ngFor="let item of cart?.items">
         <td>
-          <img src="https://via.placeholder.com/150" alt="">
+          <img src={{item.image}} alt="" class="avatar-product">
         </td>
         <td>
-          <a href="">Tên sản phẩm</a>
+          <a href="/product-detail/{{item._id}}">{{item.name}}</a>
           <div>
-            <button class="btn btn-outline-danger btn-sm mt-2">Xoá</button>
+            <button (click)="deleteProduct(item._id)" class="btn btn-outline-danger btn-sm mt-2">Xoá</button>
           </div>
         </td>
         <td>
-          <span class="font-weight-bold">10.000 đ</span>
+         <h5> {{item.price}}</h5>
         </td>
-        <td>
-          <input type="number" min="0" max="10" value="1" step="1">
+        <td style="min-width:140px">
+          <div class="input-group">
+            <div *ngIf="item.quantity >= 2" class="input-group-btn"><button (click)="TruSoLuong(item._id, item.quantity)">-</button></div>
+            <input style="text-align: center;" type="number" min="0" max="10" value={{item.quantity}} step="1">
+            <div class="input-group-btn"><button (click)="CongSoLuong(item._id, item.quantity)">+</button></div>
+          </div>
         </td>
       </tr>
     </table>
@@ -27,10 +31,10 @@
       <h6 class="text-uppercase">Giá trị đơn hàng</h6>
     </div>
     <div class="text-center my-3">
-      <h2 class="border border-info font-weight-bold text-info">50.000 đ</h2>
+      <h2 class="border border-info font-weight-bold text-info">{{cart?.total_price}}</h2>
     </div>
     <div class="text-center my-5">
-      <a href="/checkout" class="btn btn-lg btn-danger">
+      <a *ngIf="cart?.total_quantity > 0" href="/checkout" class="btn btn-lg btn-danger">
         Tiến hành đặt hàng
       </a>
     </div>

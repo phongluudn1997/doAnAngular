@@ -13,8 +13,12 @@ export class CategoryListComponent implements OnInit {
   ngOnInit() {
     this.http.getCatList().subscribe(
       next => {
-        this.data = next;
-        console.log(this.data)
+        if(next.success == true){
+          this.data = next.categories;
+          console.log(this.data)
+        } else {
+          console.log('No data')
+        }
       },
       error => {
         console.log(error)

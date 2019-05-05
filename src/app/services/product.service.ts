@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-  server: string = 'http://shop-bkdn.j.layershift.co.uk/api/product';
+  server: string = 'http://localhost:3000/api/products';
 
   constructor(private http: HttpClient) { }
 

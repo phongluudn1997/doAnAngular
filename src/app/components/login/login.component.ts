@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -48,59 +48,24 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    // this.authenticationService.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value).subscribe(
-    //   data => {
-    //     if (!!data.token) {
-    //       localStorage.setItem('token', data.token);
-    //     }
-    //     else {
-    //       //this.messagesService.add({'content':'Invalid Input','type':'error'});
-
-    //       this.toast.success('dfaf', 'adfadfasdfasfd', { tapToDismiss: true, positionClass: 'toast-top-right', progressBar: true })
-    //     }
-    //     console.log(data);
-    //     console.log(this.messagesService.messages);
-
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
-    console.log(this.loginForm.controls.username.value)
-    this.authenticationService.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
+    console.log(this.loginForm.controls.email.value)
+    this.authenticationService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
       .subscribe(
         next => {
-          if (next === null) {
-            this.toast.error('Wrong username or password', 'Login failed', { tapToDismiss: true, positionClass: 'toast-top-right', progressBar: true })
+          console.log(next)
+          if (next.message === 'error') {
+            this.toast.error(next.err, 'Error')
           }
           else {
-            console.log(next)
-            localStorage.setItem('userId', next.id)
-            localStorage.setItem('userName', next.username)
+            localStorage.setItem('token', next.token)
+            localStorage.setItem('userId', next.userId)
             this.router.navigateByUrl('/')
             this.toast.success('Wellcome to our app', 'Login successfully', { tapToDismiss: true, positionClass: 'toast-top-right', progressBar: true })
-          }
-        },
+          }},
         error => {
           this.toast.error('Please try again', 'Login failed', { tapToDismiss: true, positionClass: 'toast-top-right', progressBar: true })
         })
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form)
-    this.authenticationService.loginTest(form).subscribe(
-      next => {
-        console.log(next)
-        localStorage.setItem('token', next.token)
-      },
-      err => {
-        console.log(err)
-      }
-    )
 
-  }
-
-  login() {
-
-  }
 }

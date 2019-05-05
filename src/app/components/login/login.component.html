@@ -11,13 +11,13 @@
                             <h4 class="card-title">Login</h4>
                             <form [formGroup]="loginForm">
                                 <div class="form-group">
-                                    <label for="email">User name</label>
+                                    <label for="email">Email</label>
 
-                                    <input id="email" type="text" class="form-control" formControlName="username"
+                                    <input id="email" type="text" class="form-control" formControlName="email"
                                         required autofocus>
-                                    <div *ngIf="submitted && f.username.errors">
-                                        <div *ngIf="f.username.errors.required" class="alert alert-danger mt-1"
-                                            role="alert">Username is required!</div>
+                                    <div *ngIf="submitted && f.email.errors">
+                                        <div *ngIf="f.email.errors.required" class="alert alert-danger mt-1"
+                                            role="alert">Email is required!</div>
                                     </div>
                                 </div>
 

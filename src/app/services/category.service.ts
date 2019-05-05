@@ -11,10 +11,10 @@ export class CategoryService {
       'Content-Type' : 'application/json'
     })
   };
-  server: string = 'http://shop-bkdn.j.layershift.co.uk/api/category';
+  server: string = 'http://localhost:3000/api/categories';
   constructor(private http: HttpClient) { }
 
   getCatList(){
-    return this.http.get<any>(`${this.server}/all`);
+    return this.http.get<any>(`${this.server}`);
   }
 }

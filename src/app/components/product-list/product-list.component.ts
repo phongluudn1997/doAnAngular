@@ -21,11 +21,11 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getAllProductsByCategory(this.route.snapshot.params['id']).subscribe(next=>{
-      this.products = next;
+      this.products = next['products'];
       console.log(this.products)
     })
     this.categoryService.getCatList().subscribe(list => {
-      this.catList = list;
+      this.catList = list.categories;
       console.log(this.catList)
     })
   }
