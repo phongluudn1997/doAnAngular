@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { OrderServiceService } from 'src/app/services/order-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-checkout',
@@ -26,10 +27,12 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private orderService: OrderServiceService,
     private router: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.addressForm = this.formBuilder.group({
       fullName: [''],
       phoneNumber: [''],
@@ -42,6 +45,7 @@ export class CheckoutComponent implements OnInit {
       this.addressForm.controls.address.setValue(this.user.address);
     })
     this.cartService.getCartOfUser().subscribe(cart => {
+      this.spinner.hide();
       this.cart = cart['cart'];
       console.log(this.cart)
     }, err => {
@@ -71,7 +75,7 @@ export class CheckoutComponent implements OnInit {
       }
       this.orderService.order(order).subscribe(next => {
         console.log(next);
-        // this.router.navigateByUrl(`/myOrder/${next['order']['_id']}`)
+        this.router.navigateByUrl(`/myOrder/${next['order']['_id']}`)
         this.toast.success('Order successfully', "Success")
         this.cartService.clearCart().subscribe(next=>{},err=>{console.log(err)})
       }, err => {

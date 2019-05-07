@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-details',
@@ -23,13 +25,16 @@ export class ProductDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toast: ToastrService,
     private router: Router,
+    private spinner: NgxSpinnerService,
   ) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.idProduct = this.route.snapshot.params['id'];
     this.productService.getProductDetail(this.idProduct)
-      .subscribe(
+      .subscribe(   
         (next) => {
+          this.spinner.hide();
           this.product = next;
           console.log(this.product)
         },

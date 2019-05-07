@@ -23,13 +23,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-  }, 500);
     this.productService.getAllProductsByCategory(this.route.snapshot.params['id']).subscribe(next => {
       this.products = next['products'];
       console.log(this.products)
+      this.spinner.hide();
     })
     this.categoryService.getCatList().subscribe(list => {
       this.catList = list.categories;

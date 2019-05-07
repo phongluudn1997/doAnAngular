@@ -12,13 +12,14 @@ export class CategoryListComponent implements OnInit {
 
   data: any;
   constructor(private http: CategoryService,
-    private spinner: NgxSpinnerService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private spinner: NgxSpinnerService) { }
   ngOnInit() {
     this.spinner.show();
     this.http.getCatList().subscribe(
       next => {
-        if(next.success == true){
+        this.spinner.hide();
+        if (next.success == true) {
           this.data = next.categories;
           console.log(this.data)
         } else {
@@ -29,7 +30,7 @@ export class CategoryListComponent implements OnInit {
         console.log(error)
       }
     )
-    
+
   }
 
 }

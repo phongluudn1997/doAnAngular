@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,20 +16,16 @@ export class ShoppingCartComponent implements OnInit {
     private cartService: CartService,
     private toast: ToastrService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
   cart: any;
   ngOnInit() {
-
+    this.spinner.show();
     this.cartService.getCartOfUser().subscribe(cart => {
-      if (cart['success'] == false) {
-        this.toast.error('Please Login', cart['message'])
-        this.router.navigateByUrl('/login')
-      }
-      else {
+        this.spinner.hide();
         this.cart = cart['cart']
         console.log(this.cart)
-      }
     }, err => {
       console.log(err)
     })

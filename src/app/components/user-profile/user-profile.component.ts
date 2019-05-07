@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,11 +20,13 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private formBuidler: FormBuilder,
     private router: Router,
-    private toast: ToastrService) { }
+    private toast: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
 
 
   ngOnInit() {
+    this.spinner.show();
     this.userProfileForm = this.formBuidler.group({
       fullName: [],
       address: [''],
@@ -31,6 +34,7 @@ export class UserProfileComponent implements OnInit {
       email: ['']
     })
     this.userService.getUserInfo(localStorage.getItem('userId')).subscribe(next => {
+      this.spinner.hide();
       this.user = next.user;
       console.log(this.user);
       this.userProfileForm.controls.fullName.setValue(this.user.fullName);
