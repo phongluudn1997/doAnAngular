@@ -19,13 +19,17 @@
 
       <div id="catalogCollapse" class="collapse">
         <ul class="list-group list-group-flush">
-          <li *ngFor="let cat of catList" class="list-group-item">{{cat?.name}}</li>
+          <li *ngFor="let cat of catList" class="list-group-item">
+            <a href="/products/category/{{cat?._id}}">{{cat?.name}}</a>
+          </li>
         </ul>
       </div>
 
       <div class="d-none d-md-block">
         <ul class="list-group list-group-flush">
-          <li *ngFor="let cat of catList" class="list-group-item">{{cat?.name}}</li>
+          <li *ngFor="let cat of catList" class="list-group-item">
+            <a href="/products/category/{{cat?._id}}">{{cat?.name}}</a>
+          </li>
         </ul>
       </div>
 
@@ -55,12 +59,13 @@
           class="col-lg-3 col-md-4 col-6">
           <a href="/product-detail/{{product?._id}}" class="card my-2">
             <img class="card-img-top" src={{product?.image}} alt="">
-            <div class="card-body">
-              <h6 class="card-title"> {{product?.name.slice(0,30)}}...</h6>
-              <h5 class="card-title">{{product.price}}</h5>
+            <div class="card-body text-center">
+              <small class="card-title"> {{product?.name.split(' ', 6).join(' ')}}...</small>
+              <br>
+              <small class="card-title">{{product.price}}</small>
             </div>
-            <div class="card-footer">
-              Created at {{product?.created_at}}
+            <div class="card-footer text-center">
+              <small >Created at {{product?.created_at}}</small>
             </div> 
           </a>
         </div>

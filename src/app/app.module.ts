@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NumberPickerModule } from 'ng-number-picker';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
@@ -85,8 +86,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ToastrModule.forRoot(),
     NgxPaginationModule,
     MatStepperModule,
-    NumberPickerModule
-    //BootstrapInputSpinner,
+    NumberPickerModule,
+    NgxSpinnerModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },],
   bootstrap: [AppComponent]

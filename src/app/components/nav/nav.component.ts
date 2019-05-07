@@ -20,7 +20,8 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.authService.getUserInfo((localStorage.getItem('userId'))).subscribe(next => {
-        this.name = next['user']['fullName'].split();
+        this.name = (next['user']['fullName']);
+        this.name = (this.name.split(' ').length > 2 ? this.name.split(' ', 2).join(' ') + ' ...' : this.name)
       }, err => {
         console.log(err)
       })

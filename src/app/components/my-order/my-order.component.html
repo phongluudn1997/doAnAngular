@@ -16,8 +16,8 @@
       <tbody>
         <tr *ngFor="let order of orders">
           <td><a href="myOrder/{{order._id}}">{{order._id.slice(0,15)}}...</a></td>
-          <td>{{order.created_at}}</td>
-          <td>{{order.products[0].slice(0,15)}}... và {{order.products.length - 1}} sản phẩm khác</td>
+          <td>{{order?.created_at}}</td>
+          <td>{{order?.products[0]?.slice(0,15)}}... và {{order.products.length - 1}} sản phẩm khác</td>
           <td>{{order.total_price}}</td>
           <td>Thành công</td>
         </tr>

@@ -26,10 +26,10 @@
     <a href="login" ><button *ngIf="!authService.isLoggedIn()" class="mr-1 btn btn-outline-light" type="button">Login</button></a>
     <!-- Example single danger button -->
     <div *ngIf="authService.isLoggedIn()" class="btn-group mr-1">
-      <button type="button" class="btn btn-info">
-        Welcome {{name}}...!
+      <button type="button" class="btn btn-outline-light">
+        Welcome {{name}}
       </button>
-      <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+      <button type="button" class="btn btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
@@ -44,7 +44,7 @@
     <a href="/cart" class="btn btn-outline-light">
       <i style="vertical-align: middle" class="material-icons">shopping_cart</i>
       Shopping Cart
-      <span class="badge badge-warning">{{cartQuantity}}</span>
+      <span class="badge badge-light">{{cartQuantity}}</span>
     </a>
   </div>
 </nav>
