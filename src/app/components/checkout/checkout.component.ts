@@ -50,9 +50,9 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  Order(){
+  Order() {
     let order = {};
-    this.cartService.getCartOfUser().subscribe(next=>{
+    this.cartService.getCartOfUser().subscribe(next => {
       let items = [];
       next['cart']['items'].map(item => {
         items.push({
@@ -62,30 +62,29 @@ export class CheckoutComponent implements OnInit {
         })
       })
       let order = {
-        user:{
+        user: {
           fullName: this.addressForm.controls.fullName.value,
           address: this.addressForm.controls.address.value,
           phoneNumber: this.addressForm.controls.phoneNumber.value
         },
-        items:items
+        items: items
       }
-      this.orderService.order(order).subscribe(next=>{
+      this.orderService.order(order).subscribe(next => {
         console.log(next);
-        this.router.navigateByUrl(`/myOrder/${next['order']['_id']}`)
+        // this.router.navigateByUrl(`/myOrder/${next['order']['_id']}`)
         this.toast.success('Order successfully', "Success")
-        this.cartService.clearCart().subscribe(err => {
-          console.log(err)
-          this.toast.error(`${err}`, 'Error')
-        })
+        this.cartService.clearCart().subscribe(next=>{},err=>{console.log(err)})
       }, err => {
-        console.log(err);
-        this.toast.error(`${err}`, 'Error')
+        if (err) {
+          console.log(err);
+          this.toast.error(`2`, 'Error')
+        }
       });
     }, err => {
       console.log(err);
       this.toast.error(`${err}`, 'Error')
     })
-    
+
   }
 
 }

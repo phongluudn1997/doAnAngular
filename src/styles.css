@@ -5,3 +5,20 @@ html, body { height: 100%; }
 .card-body{
     padding: 5px;
 }
+.wrap-white{
+    background-color: #fff;
+    padding: 10px;
+}
+
+.red-border:hover{
+    border: 1px solid red 
+}
+
+a, u {
+    color: darkslategrey;
+    text-decoration: none !important;
+}
+
+a:hover{
+    color: black;
+}

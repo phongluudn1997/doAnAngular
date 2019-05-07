@@ -1,4 +1,13 @@
-<div class="row mt-5">
+<div *ngIf="cart?.total_quantity == 0" class="container wrap-white text-center">
+ 
+    <img class="img-fluid mx-auto d-block" src="../../../assets/img/gio-hang-trong.png" alt="">
+    <br>
+    <span>Giỏ hàng trống, đi sắm đồ nhé </span>
+    <a class="btn btn-success" href="/">Let's go</a>
+ 
+</div>
+
+<div *ngIf="cart?.total_quantity > 0" class="row mt-5">
   <!-- Giỏ hàng  -->
   <div class="col-md-9 col-12">
     <table class="table">
