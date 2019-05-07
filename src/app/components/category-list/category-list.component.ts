@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-category-list',
@@ -9,8 +11,11 @@ import { CategoryService } from 'src/app/services/category.service';
 export class CategoryListComponent implements OnInit {
 
   data: any;
-  constructor(private http: CategoryService) { }
+  constructor(private http: CategoryService,
+    private spinner: NgxSpinnerService,
+    private productService: ProductService) { }
   ngOnInit() {
+    this.spinner.show();
     this.http.getCatList().subscribe(
       next => {
         if(next.success == true){
@@ -24,6 +29,7 @@ export class CategoryListComponent implements OnInit {
         console.log(error)
       }
     )
+    
   }
 
 }
