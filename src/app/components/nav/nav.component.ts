@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class NavComponent implements OnInit {
 
   constructor(
-    private authService: AuthenticationService,
+    public authService: AuthenticationService,
     private cartService: CartService,
     private toast: ToastrService) { }
 
