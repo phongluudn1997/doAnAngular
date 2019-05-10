@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, CheckboxRequiredValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/services/messages.service';
 import { Message } from 'src/app/models/message';

@@ -9,7 +9,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class CartGuard implements CanActivate {
   constructor(private cartQuantity: AuthenticationService, private router: Router) { }
-  canActivate() {
+  canActivate():boolean {
     this.cartQuantity.getUserInfo().subscribe(next => {
       if (next['product_cart'] > 0) return true;
       else {
@@ -19,8 +19,7 @@ export class CartGuard implements CanActivate {
     }, err => {
       console.log(err);
     })
-    this.router.navigateByUrl('/cart')
-    return false;
+    return true;
   }
 
 }
