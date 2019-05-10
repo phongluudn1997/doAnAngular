@@ -16,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ProductDetailsComponent implements OnInit {
   idProduct: string;
-  product: Product;
+  product: any;
   addToCartForm: FormGroup;
   constructor(
     private route: ActivatedRoute,
