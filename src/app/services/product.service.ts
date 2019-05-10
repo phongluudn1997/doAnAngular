@@ -12,11 +12,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductDetail(id: string):Observable<Product>{
-    return this.http.get<Product>(`${this.server}/${id}`);
+  getProductDetail(id: string): Observable<Product> {
+    return this.http.get<Product>(`http://shop-service.j.layershift.co.uk/api/product/view/${id}`);
   }
 
-  getAllProductsByCategory(id_Cat: string):Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.server}/category/${id_Cat}`);
+  getAllProductsByCategory(id_Cat: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`http://shop-service.j.layershift.co.uk/api/product/category/${id_Cat}`);
   }
+
+  getNewProducts() {
+    return this.http.get('http://shop-service.j.layershift.co.uk/api/product/view/top')
+  }
+
+  getTopProducts(){
+    return this.http.get('http://shop-service.j.layershift.co.uk/api/product/view/top-buy')
+  }
+
 }

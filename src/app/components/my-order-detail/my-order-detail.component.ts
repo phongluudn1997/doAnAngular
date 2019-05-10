@@ -20,7 +20,7 @@ export class MyOrderDetailComponent implements OnInit {
     this.spinner.show();
     this.orderService.getOrderById(this.route.snapshot.params['id']).subscribe(next=>{
       this.spinner.hide();
-      this.order = next['order']
+      this.order = next
       console.log(this.order)
     })
   }

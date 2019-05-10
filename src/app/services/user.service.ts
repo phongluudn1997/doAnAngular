@@ -14,11 +14,11 @@ export class UserService {
   server: string = 'http://localhost:3000/api/users';
   constructor(private http: HttpClient) { }
 
-  getUserInfo(id:string){
-    return this.http.get<any>(`${this.server}/${id}`);
+  getUserInfo(){
+    return this.http.get(`http://shop-service.j.layershift.co.uk/api/account/current`)
   }
 
   updateUserInfo(user){
-    return this.http.put<any>(`${this.server}/update`, user, httpOptions);
+    return this.http.put<any>(`http://shop-service.j.layershift.co.uk/api/account/edit`, user, httpOptions);
   }
 }

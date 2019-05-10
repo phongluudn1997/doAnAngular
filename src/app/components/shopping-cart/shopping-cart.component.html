@@ -1,34 +1,39 @@
-<div *ngIf="cart?.total_quantity == 0" class="container wrap-white text-center">
- 
+<ng-template #noProducts>
+  <div class="container wrap-white text-center">
+
     <img class="img-fluid mx-auto d-block" src="../../../assets/img/gio-hang-trong.png" alt="">
     <br>
     <span>Giỏ hàng trống, đi sắm đồ nhé </span>
     <a class="btn btn-success" href="/">Let's go</a>
- 
-</div>
 
-<div *ngIf="cart?.total_quantity > 0" class="row mt-5">
+  </div>
+</ng-template>
+
+
+<div *ngIf="total_quantity > 0 else noProducts" class="row mt-5">
   <!-- Giỏ hàng  -->
   <div class="col-md-9 col-12">
     <table class="table">
-      <tr *ngFor="let item of cart?.items">
+      <tr *ngFor="let item of cart['carts']">
         <td>
-          <img src={{item.image}} alt="" class="avatar-product">
+          <img src={{item?.image}} alt="" class="avatar-product">
         </td>
         <td>
-          <a href="/product-detail/{{item._id}}">{{item.name}}</a>
+          <a href="/product-detail/{{item.id_product}}">{{item.name_product}}</a>
           <div>
-            <button (click)="deleteProduct(item._id)" class="btn btn-outline-danger btn-sm mt-2">Xoá</button>
+            <button (click)="deleteProduct(item.id_product)" class="btn btn-outline-danger btn-sm mt-2">Xoá</button>
           </div>
         </td>
         <td>
-         <h5> {{item.price}}</h5>
+          <h5> {{item.price}}</h5>
         </td>
         <td style="min-width:140px">
           <div class="input-group">
-            <div *ngIf="item.quantity >= 2" class="input-group-btn"><button (click)="TruSoLuong(item._id, item.quantity)">-</button></div>
-            <input style="text-align: center;" type="number" min="0" max="10" value={{item.quantity}} step="1">
-            <div class="input-group-btn"><button (click)="CongSoLuong(item._id, item.quantity)">+</button></div>
+            <div *ngIf="item.quantity >= 2" class="input-group-btn"><button
+                (click)="TruSoLuong(item.id_product, item.quantity)">-</button></div>
+            <input id="quantity-{{item.id}}" style="text-align: center;" type="number" min="0" max="10"
+              value={{item.quantity}} step="1">
+            <div class="input-group-btn"><button (click)="CongSoLuong(item.id_product, item.quantity)">+</button></div>
           </div>
         </td>
       </tr>
@@ -43,7 +48,7 @@
       <h2 class="border border-info font-weight-bold text-info">{{cart?.total_price}}</h2>
     </div>
     <div class="text-center my-5">
-      <a *ngIf="cart?.total_quantity > 0" href="/checkout" class="btn btn-lg btn-danger">
+      <a *ngIf="total_quantity > 0" href="/checkout" class="btn btn-lg btn-danger">
         Tiến hành đặt hàng
       </a>
     </div>

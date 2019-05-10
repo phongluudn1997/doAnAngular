@@ -15,6 +15,7 @@ import { MyOrderDetailComponent } from './components/my-order-detail/my-order-de
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AuthGuard } from './guard/auth.guard';
+import { CartGuard } from './guard/cart.guard';
 
 
 const routes: Routes = [
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'product-detail/:id', component: ProductDetailsComponent },
   { path: 'cart', component: ShoppingCartComponent, canActivate:[AuthGuard] },
-  { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard] },
+  { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard, CartGuard] },
   { path: 'profile', component: UserProfileComponent, canActivate:[AuthGuard] },
   { path: 'myOrder', component: MyOrderComponent, canActivate:[AuthGuard] },
   { path: 'myOrder/:id', component: MyOrderDetailComponent, canActivate:[AuthGuard] },

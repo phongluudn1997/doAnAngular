@@ -1,19 +1,19 @@
-<script src="../../../assets/js/custom.js"></script>
-<mat-horizontal-stepper labelPosition="bottom" linear>
+
+<mat-horizontal-stepper labelPosition="bottom" linear #stepper>
 
   <!-- Mat-step-1 -->
 
-  <mat-step label="Địa Chỉ Giao Hàng">
+  <mat-step [stepControl]="addressForm" label="Địa Chỉ Giao Hàng">
     <div class="my-3 mb-5">
       <form [formGroup]="addressForm">
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="">Tên người nhận</label>
-            <input type="text" class="form-control" formControlName="fullName">
+            <input  type="text" class="form-control" formControlName="fullname" required>
           </div>
           <div class="form-group col-md-3">
             <label for="">Số điện thoại</label>
-            <input type="text" class="form-control"  formControlName = "phoneNumber">
+            <input type="text" class="form-control"  formControlName = "phone">
           </div>
         </div>
         <div class="form-group">
@@ -23,7 +23,7 @@
       </form>
     </div>
     <div class="text-center">
-      <button class="btn btn-outline-success px-5" matStepperNext>Tiếp Theo</button>
+      <button (click)="moveToStep2()" class="btn btn-outline-success px-5" matStepperNext>Tiếp Theo</button>
     </div>
 
   </mat-step>
@@ -41,11 +41,6 @@
             <input type="radio" class="custom-control-input" id="TienMat" name="example1" checked data-toggle="collapse"
               data-target="#collapseExample.show">
             <label class="custom-control-label" for="TienMat">Thanh toán tiền mặt khi nhận hàng</label>
-          </div>
-          <div class="my-5 custom-control custom-radio">
-            <input data-toggle="collapse" data-target="#collapseExample:not(.show)" type="radio"
-              class="custom-control-input" id="Paypal" name="example1">
-            <label class="custom-control-label" for="Paypal">Thanh toán bằng Paypal</label>
           </div>
           <div class="collapse" id="collapseExample">
             <div class="card card-body">
@@ -76,12 +71,12 @@
           </div>
           <div class="card-body">
             <h5 class="card-title">
-              {{addressForm.controls.fullName.value}}
+              {{addressForm.controls.fullname.value}}
             </h5>
             <small class="card-text">
                 {{addressForm.controls.address.value}}
               <br>
-              Điện thoại: {{addressForm.controls.phoneNumber.value}}
+              Điện thoại: {{addressForm.controls.phone.value}}
             </small>
           </div>
         </div>
@@ -100,9 +95,9 @@
             </div>
             <div class="card-body">
               <table class="table">
-                <tr *ngFor="let item of cart?.items">
+                <tr *ngFor="let item of cart?.carts">
                   <td>
-                    <small>{{item.quantity}} x {{item.name}}</small>
+                    <small>{{item.quantity}} x {{item.name_product}}</small>
                   </td>
                   <td>
                     <h6>{{item.price}}</h6>

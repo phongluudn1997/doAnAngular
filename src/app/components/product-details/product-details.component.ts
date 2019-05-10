@@ -39,6 +39,7 @@ export class ProductDetailsComponent implements OnInit {
           console.log(this.product)
         },
         (err) => {
+          this.spinner.hide();
           console.log(err);
         }
       )
@@ -51,16 +52,17 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   AddToCart() {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}
+   // this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}
     console.log(this.addToCartForm.controls._id.value)
     console.log(this.addToCartForm.controls.product_quantity.value)
     this.cartService.addProduct({
-      _idProduct: this.route.snapshot.params['id'],
+      id_product: this.route.snapshot.params['id'],
       quantity: this.addToCartForm.controls.product_quantity.value
     }).subscribe(result => {
       this.toast.success('Add to Cart successfully', 'Success')
       window.location.reload()
     }, err => {
+      console.log(err)
       this.toast.error('Please try again', 'Failed')
     })
    

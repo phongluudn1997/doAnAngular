@@ -15,6 +15,6 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCatList(){
-    return this.http.get<any>(`${this.server}`);
+    return this.http.get<any>(`http://shop-service.j.layershift.co.uk/api/category/view/all`);
   }
 }

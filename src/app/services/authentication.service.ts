@@ -10,6 +10,12 @@ const HttpOptions = {
   })
 }
 
+const HttpOptions2= {
+  headers: new HttpHeaders({
+    'Content-Type': 'multipart/form-data',
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +26,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string) {
-    return this.http.post<any>(this.server + '/login', { email: email, password: password }, HttpOptions)
+    return this.http.post<any>('http://shop-service.j.layershift.co.uk/api/login-customer', { username: email, password: password }, HttpOptions)
   }
 
 
@@ -33,7 +39,8 @@ export class AuthenticationService {
   }
 
   register(user){
-    return this.http.post<any>(this.server + 'account/register', user, HttpOptions);
+    console.log(user)
+    return this.http.post<any>('http://shop-service.j.layershift.co.uk/api/account/register', user, HttpOptions);
   }
 
   getToken(){
@@ -49,8 +56,8 @@ export class AuthenticationService {
     this.router.navigateByUrl('/')
   }
 
-  getUserInfo(id){
-    return this.http.get(`${this.server}/${id}`)
+  getUserInfo(){
+    return this.http.get(`http://shop-service.j.layershift.co.uk/api/account/current`)
   }
 
   getUpdate(){

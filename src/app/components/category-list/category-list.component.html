@@ -3,7 +3,7 @@
 </div>
 <div class="row wrap-white">
     <div *ngFor="let item of data" class="col-md-2">
-        <a href="products/category/{{item._id}}">
+        <a href="products/category/{{item.id}}">
             <div class="card">
                 <img class="card-img-top p-1" src={{item.image}} alt="Card image cap">
                 <div class="card-body text-center">
@@ -20,16 +20,16 @@
 
 <!-- Product -->
 <div class="row wrap-white">
-    <div *ngFor="let i of [].constructor(12)" class="col-lg-3 col-md-4 col-6">
-        <a href="" class="card my-2 red-border">
-            <img class="card-img-top" src="" alt="">
+    <div *ngFor="let topProduct of topProducts" class="col-lg-3 col-md-4 col-6">
+        <a href="/product-detail/{{topProduct.id}}" class="card my-2 red-border">
+            <img class="card-img-top" src="{{topProduct.image[0]}}" alt="">
             <div class="card-body text-center">
-                <small class="card-title"> ...</small>
+                <small class="card-title">{{topProduct.name}}</small>
                 <br>
-                <small class="card-title"></small>
+                <small class="card-title">{{topProduct.price}}</small>
             </div>
             <div class="card-footer text-center">
-                <small>Created at</small>
+                <small>Created at {{topProduct.created_at}}</small>
             </div>
         </a>
     </div>
@@ -40,16 +40,16 @@
 </div>
 
 <div class="row wrap-white">
-    <div *ngFor="let i of [].constructor(12)" class="col-lg-3 col-md-4 col-6">
-        <a href="" class="card my-2 red-border">
-            <img class="card-img-top" src="" alt="">
+    <div *ngFor="let i of newProducts" class="col-lg-3 col-md-4 col-6">
+        <a href="/product-detail/{{i.id}}" class="card my-2 red-border">
+            <img class="card-img-top" src="{{i.image[0]}}" alt="">
             <div class="card-body text-center">
-                <small class="card-title"> ...</small>
+                <small class="card-title">{{i.name}}</small>
                 <br>
-                <small class="card-title"></small>
+                <small class="card-title">{{i.price}}</small>
             </div>
             <div class="card-footer text-center">
-                <small>Created at</small>
+                <small>Created at {{i.created_at}}</small>
             </div>
         </a>
     </div>

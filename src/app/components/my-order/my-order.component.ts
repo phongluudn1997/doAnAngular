@@ -18,11 +18,12 @@ export class MyOrderComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    this.orderService.getOrderOfUser(this.authService.getUserId()).subscribe(next => {
+    this.orderService.getOrderOfUser().subscribe(next => {
       this.spinner.hide();
-      this.orders = next['orders'];
+      this.orders = next;
       console.log(this.orders)
     }, err => {
+      this.spinner.hide();
       console.log(err)
     })
   }

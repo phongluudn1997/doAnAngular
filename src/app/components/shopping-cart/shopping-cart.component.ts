@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -20,13 +21,16 @@ export class ShoppingCartComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { }
   cart: any;
+  total_quantity: any;
   ngOnInit() {
     this.spinner.show();
     this.cartService.getCartOfUser().subscribe(cart => {
-        this.spinner.hide();
-        this.cart = cart['cart']
-        console.log(this.cart)
+      this.spinner.hide();
+      this.cart = cart;
+      this.total_quantity = this.cart.carts.length;
+      console.log(this.cart)
     }, err => {
+      this.spinner.hide();
       console.log(err)
     })
   }
@@ -45,6 +49,7 @@ export class ShoppingCartComponent implements OnInit {
   }
   CongSoLuong(_idProduct, quantity) {
     quantity++;
+    console.log(_idProduct)
     console.log(quantity)
     this.cartService.updateProduct(_idProduct, quantity).subscribe(next => {
       console.log(next)
@@ -56,16 +61,12 @@ export class ShoppingCartComponent implements OnInit {
 
   deleteProduct(_idProduct) {
     this.cartService.deleteProduct(_idProduct).subscribe(next => {
-      if (next['success'] == true) {
-        this.toast.success(next['message'], 'Success')
-        window.location.reload();
-      } else {
-        this.toast.error(next['message'], 'Error')
-      }
+      console.log(next)
+      window.location.reload();
+      this.toast.success('Delete successfully', 'Success')
     }, err => {
       console.log(err)
       this.toast.error('Something Wrong', 'Error')
     })
   }
-
 }

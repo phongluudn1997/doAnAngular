@@ -57,8 +57,8 @@ export class LoginComponent implements OnInit {
             this.toast.error(next.err, 'Error')
           }
           else {
-            localStorage.setItem('token', next.token)
-            localStorage.setItem('userId', next.userId)
+            localStorage.setItem('token', next.accessToken)
+          //  localStorage.setItem('userId', next.userId)
             this.router.navigateByUrl('/')
             this.toast.success('Wellcome to our app', 'Login successfully', { tapToDismiss: true, positionClass: 'toast-top-right', progressBar: true })
           }},

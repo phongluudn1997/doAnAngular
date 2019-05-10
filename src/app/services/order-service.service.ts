@@ -18,15 +18,15 @@ export class OrderServiceService {
   ) { }
 
   order(order){
-    return this.http.post(`${this.server}`, order, this.httpOptions);
+    return this.http.post(`http://shop-service.j.layershift.co.uk/api/transaction/add`, order, this.httpOptions);
   }
 
-  getOrderOfUser(_id){
-    return this.http.get(`${this.server}/user/${_id}`)
+  getOrderOfUser(){
+    return this.http.get(`http://shop-service.j.layershift.co.uk/api/transaction/customer`)
   }
 
   getOrderById(_id){
-    return this.http.get(`${this.server}/${_id}`)
+    return this.http.get(`http://shop-service.j.layershift.co.uk/api/transaction/customer/${_id}`)
   }
 
 }

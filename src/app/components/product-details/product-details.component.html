@@ -14,9 +14,9 @@
         <!-- The slideshow -->
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src={{product?.images[0]}}>
+            <img src={{product?.image[0]}}>
           </div>
-          <div *ngFor='let i of product?.images | slice:1' class="carousel-item">
+          <div *ngFor='let i of product?.image | slice:1' class="carousel-item">
             <img src={{i}}>
           </div>
         </div>
@@ -78,7 +78,7 @@
         </tr>
         <tr>
           <td>Người bán</td>
-          <td>{{product?.user_name}}</td>
+          <td>{{product?.created_by}}</td>
         </tr>
       </tbody>
     </table>

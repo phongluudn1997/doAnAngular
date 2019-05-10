@@ -3,7 +3,7 @@
     <!-- Avatar  -->
     <div class="col-sm-4 col-12">
       <div>
-        <img src="../../assets/img/maihuong.jpg" alt="" class="rounded-lg shadow img-thumbnail">
+        <img src="{{user?.profile.avatar}}" alt="" class="rounded-lg shadow img-thumbnail">
       </div>
     </div>
     <!-- Profile -->
@@ -16,13 +16,13 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Họ & tên</label>
           <div class="col-sm-10">
-            <input class="form-control" value={{user?.fullName}} formControlName='fullName'>
+            <input class="form-control" value={{user?.fullname}} formControlName='fullname'>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">SĐT</label>
           <div class="col-sm-10">
-            <input class="form-control" value={{user?.phoneNumber}} formControlName = 'phoneNumber'>
+            <input class="form-control" value={{user?.phone}} formControlName = 'phone'>
           </div>
         </div>
 

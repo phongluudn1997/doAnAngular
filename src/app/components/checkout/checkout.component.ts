@@ -3,7 +3,7 @@ import { $ } from 'protractor';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderServiceService } from 'src/app/services/order-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -34,60 +34,54 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.addressForm = this.formBuilder.group({
-      fullName: [''],
-      phoneNumber: [''],
-      address: ['']
+      fullname: ['', Validators.required],
+      phone: ['', Validators.required],
+      address: ['', Validators.required]
     })
-    this.userService.getUserInfo(localStorage.getItem('userId')).subscribe(next => {
-      this.user = next.user;
-      this.addressForm.controls.fullName.setValue(this.user.fullName);
-      this.addressForm.controls.phoneNumber.setValue(this.user.phoneNumber);
-      this.addressForm.controls.address.setValue(this.user.address);
+    this.userService.getUserInfo().subscribe(next => {
+      this.user = next;
+      this.addressForm.controls.fullname.setValue(this.user.profile.fullname);
+      this.addressForm.controls.phone.setValue(this.user.profile.phone);
+      this.addressForm.controls.address.setValue(this.user.profile.address);
     })
     this.cartService.getCartOfUser().subscribe(cart => {
       this.spinner.hide();
-      this.cart = cart['cart'];
+      this.cart = cart;
       console.log(this.cart)
     }, err => {
+      this.spinner.hide();
       console.log(err)
     })
+  }
 
+  get f(){
+    return this.addressForm.controls;
+  }
+
+  moveToStep2(){
+    console.log(this.f.fullname.value)
+    if(this.f.fullname.value !== '' && this.f.phone.value !== '' && this.f.address.value !== ''){} else {
+      this.toast.error('Điền thông tin người nhận', "Error");
+    }
   }
 
   Order() {
-    let order = {};
-    this.cartService.getCartOfUser().subscribe(next => {
-      let items = [];
-      next['cart']['items'].map(item => {
-        items.push({
-          product: item._id,
-          price: item.price_no_format,
-          quantity: item.quantity
-        })
-      })
-      let order = {
-        user: {
-          fullName: this.addressForm.controls.fullName.value,
-          address: this.addressForm.controls.address.value,
-          phoneNumber: this.addressForm.controls.phoneNumber.value
-        },
-        items: items
-      }
-      this.orderService.order(order).subscribe(next => {
-        console.log(next);
-        this.router.navigateByUrl(`/myOrder/${next['order']['_id']}`)
-        this.toast.success('Order successfully', "Success")
-        this.cartService.clearCart().subscribe(next=>{},err=>{console.log(err)})
-      }, err => {
-        if (err) {
-          console.log(err);
-          this.toast.error(`2`, 'Error')
-        }
-      });
+
+    let order = {
+      id_payment: 2,
+      fullaname: this.addressForm.controls.fullname.value,
+      address: this.addressForm.controls.address.value,
+      phone: this.addressForm.controls.phone.value
+    }
+    console.log(order)
+    this.orderService.order(order).subscribe(next => {
+      console.log(next);
+      this.router.navigateByUrl(`/myOrder/${next['id']}`)
+      this.toast.success('Order successfully', "Success")
     }, err => {
       console.log(err);
-      this.toast.error(`${err}`, 'Error')
-    })
+      this.toast.error('Something happened when order', 'Error')
+    });
 
   }
 

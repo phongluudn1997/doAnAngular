@@ -28,19 +28,22 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.userProfileForm = this.formBuidler.group({
-      fullName: [],
+      fullname: [],
       address: [''],
-      phoneNumber: [''],
+      phone: [''],
       email: ['']
     })
-    this.userService.getUserInfo(localStorage.getItem('userId')).subscribe(next => {
+    this.userService.getUserInfo().subscribe(next => {
       this.spinner.hide();
-      this.user = next.user;
+      this.user = next;
       console.log(this.user);
-      this.userProfileForm.controls.fullName.setValue(this.user.fullName);
-      this.f.address.setValue(this.user.address);
-      this.f.phoneNumber.setValue(this.user.phoneNumber);
-      this.f.email.setValue(this.user.email)
+      this.userProfileForm.controls.fullname.setValue(this.user.profile.fullname);
+      this.f.address.setValue(this.user.profile.address);
+      this.f.phone.setValue(this.user.profile.phone);
+      this.f.email.setValue(this.user.profile.email)
+    }, err => {
+        this.spinner.hide();
+        console.log(err)
     })
 
   }
@@ -51,11 +54,10 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit() {
     console.log(this.userProfileForm.value);
-    this.userService.updateUserInfo( this.userProfileForm.value)
+    this.userService.updateUserInfo(this.userProfileForm.value)
       .subscribe(
         (next) => {
           console.log(next);
-          this.router.navigateByUrl('/profile');
           this.toast.success('Update successfully', 'Success');
         },
         (err) => {

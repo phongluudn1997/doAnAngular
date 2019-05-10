@@ -22,7 +22,7 @@
       <div id="catalogCollapse" class="collapse">
         <ul class="list-group list-group-flush">
           <li *ngFor="let cat of catList" class="list-group-item">
-            <a href="/products/category/{{cat?._id}}">{{cat?.name}}</a>
+            <a href="/products/category/{{cat?.id}}"><small>{{cat?.name}}</small></a>
           </li>
         </ul>
       </div>
@@ -30,7 +30,7 @@
       <div class="d-none d-md-block">
         <ul class="list-group list-group-flush">
           <li *ngFor="let cat of catList" class="list-group-item">
-            <a href="/products/category/{{cat?._id}}">{{cat?.name}}</a>
+            <a href="/products/category/{{cat?.id}}"><small>{{cat?.name}}</small></a>
           </li>
         </ul>
       </div>
@@ -60,8 +60,8 @@
         <div *ngFor="let product of products | paginate:{ itemsPerPage: 12, currentPage: p }"
           class="col-lg-3 col-md-4 col-6">
           <div class="red-border">
-            <a href="/product-detail/{{product?._id}}" class="card my-2">
-              <img class="card-img-top" src={{product?.image}} alt="">
+            <a href="/product-detail/{{product?.id}}" class="card my-2">
+              <img class="card-img-top" src={{product?.image[0]}} alt="">
               <div class="card-body text-center">
                 <small class="card-title"> {{product?.name.split(' ', 6).join(' ')}}...</small>
                 <br>

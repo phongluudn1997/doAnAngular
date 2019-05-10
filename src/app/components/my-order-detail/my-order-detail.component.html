@@ -1,6 +1,6 @@
 <div class="container bg-white">
   <div class="d-flex justify-content-around my-3">
-    <h4>Chi tiết đơn hàng - #{{order?._id}}</h4>
+    <h4>Chi tiết đơn hàng - #{{order?.id}}</h4>
     <span>Ngày đặt hàng: {{order?.created_at}}</span>
   </div>
 
@@ -9,8 +9,8 @@
       <div class="card bg-light">
         <div class="card-header">ĐỊA CHỈ NGƯỜI NHẬN</div>
         <div class="card-body">
-          <h5 class="card-title">{{order?.userNhanHang.fullName}}</h5>
-          <p class="card-text">Địa chỉ: {{order?.userNhanHang.address}}</p>
+          <h5 class="card-title">{{order?.buyer.name}}</h5>
+          <p class="card-text">Địa chỉ: {{order?.buyer.address}}</p>
         </div>
       </div>
     </div>
@@ -35,17 +35,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of order?.items">
+        <tr *ngFor="let item of order?.order">
           <td>
             <div>
               <img style="vertical-align:middle; max-height: 150px" src={{item.image}}
                 class="rounded img-thumbnail mr-3">
-              <span>{{item.name.slice(0,30)}}...</span>
+              <span>{{item.product.split(' ', 4).join(' ')}}...</span>
             </div>
           </td>
-          <td class="align-middle">{{item.price}}</td>
+          <td class="align-middle">{{item.amount}}</td>
           <td class="align-middle">{{item.quantity}}</td>
-          <td class="align-middle">{{item.pricePerProduct}}</td>
+          <td class="align-middle">{{order.amount}}</td>
         </tr>
       </tbody>
       <tfoot>

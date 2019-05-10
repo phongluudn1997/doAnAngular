@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,19 +22,23 @@ export class CartService {
 
 
   addProduct(body){
-    return this.http.post(`${this.server}/add`, body, this.httpOptions);
+    return this.http.post(`http://shop-service.j.layershift.co.uk/api/cart/add`, body, this.httpOptions);
   }
 
   getCartOfUser(){
-    return this.http.get(`${this.server}`);
+    return this.http.get(`http://shop-service.j.layershift.co.uk/api/cart/customer`);
   }
 
   updateProduct(_idProduct, quantity){
-    return this.http.post(`${this.server}/update`, {_idProduct: _idProduct, quantity: quantity}, this.httpOptions);
+    return this.http.put(`http://shop-service.j.layershift.co.uk/api/cart/update`, {id_product: _idProduct, quantity: quantity}, this.httpOptions);
   }
 
   deleteProduct(_idProduct){
-    return this.http.post(`${this.server}/delete`, ({_idProduct: _idProduct}), this.httpOptions);
+    return this.http.post(`http://shop-service.j.layershift.co.uk/api/cart/delete`, ({id_product: _idProduct}), this.httpOptions)
+  }
+
+  updateCart(body){
+    return this.http.put('http://shop-service.j.layershift.co.uk/api/cart/update', body, this.httpOptions)
   }
 
   clearCart(){
