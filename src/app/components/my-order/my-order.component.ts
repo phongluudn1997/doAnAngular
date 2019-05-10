@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class MyOrderComponent implements OnInit {
   orders: any;
+  p: number = 1;
   constructor(
     private orderService: OrderServiceService,
     private authService: AuthenticationService,
