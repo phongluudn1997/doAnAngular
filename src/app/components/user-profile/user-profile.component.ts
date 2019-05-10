@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class UserProfileComponent implements OnInit {
 
+  avatar: any;
   form: FormGroup
   user: any;
   userProfileForm: FormGroup;
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit {
       fullname: [],
       address: [''],
       phone: [''],
-      email: ['']
+      email: [''],
     })
     this.userService.getUserInfo().subscribe(next => {
       this.spinner.hide();
@@ -45,7 +46,19 @@ export class UserProfileComponent implements OnInit {
         this.spinner.hide();
         console.log(err)
     })
+  }
 
+  onFileChange(event){
+    const file = event.target.files[0];
+    console.log(file);
+    this.userService.uploadImage(file).subscribe(next => {
+      console.log(next)
+      this.avatar = next['fileDownloadUri'];
+      this.userService.updateUserInfo({"avatar": this.avatar}).subscribe(next => {
+        console.log(next);
+        location.reload();
+      }, err => console.log(err))
+    }, err => console.log(err))
   }
 
   get f() {

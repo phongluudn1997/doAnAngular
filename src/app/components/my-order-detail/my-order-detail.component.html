@@ -43,9 +43,9 @@
               <span>{{item.product.split(' ', 4).join(' ')}}...</span>
             </div>
           </td>
-          <td class="align-middle">{{item.amount}}</td>
+          <td class="align-middle">{{item.price}}</td>
           <td class="align-middle">{{item.quantity}}</td>
-          <td class="align-middle">{{order.amount}}</td>
+          <td class="align-middle">{{item.amount}}</td>
         </tr>
       </tbody>
       <tfoot>
@@ -54,7 +54,7 @@
           <td></td>
           <td><span class="">Tổng cộng</span></td>
           <td>
-            <h5 class="text-danger">{{order?.total_price}}</h5>
+            <h5 class="text-danger">{{order?.amount}}</h5>
           </td>
         </tr>
       </tfoot>

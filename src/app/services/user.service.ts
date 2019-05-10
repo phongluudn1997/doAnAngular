@@ -21,4 +21,10 @@ export class UserService {
   updateUserInfo(user){
     return this.http.put<any>(`http://shop-service.j.layershift.co.uk/api/account/edit`, user, httpOptions);
   }
+
+  uploadImage(file){
+    let form = new FormData();
+    form.append('image',file);
+    return this.http.post('http://shop-service.j.layershift.co.uk/api/upload', form)
+  }
 }
