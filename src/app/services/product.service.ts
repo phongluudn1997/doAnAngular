@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   getAllProductsByCategory(id_Cat: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`http://shop-service.j.layershift.co.uk/api/product/category/${id_Cat}`);
+    return this.http.get<Product[]>(`http://shop-service.j.layershift.co.uk/api/product/view/category/${id_Cat}`);
   }
 
   getNewProducts() {
