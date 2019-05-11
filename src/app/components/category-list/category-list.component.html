@@ -4,8 +4,8 @@
 <div class="row wrap-white">
     <div *ngFor="let item of data" class="col-md-2">
         <a href="products/category/{{item.id}}">
-            <div class="card">
-                <img class="card-img-top p-1" src={{item.image}} alt="Card image cap">
+            <div class="card mb-3">
+                <img height="150px" class="card-img-top p-1" src={{item.image}} alt="Card image cap">
                 <div class="card-body text-center">
                     <small class="card-title text-center">{{item.name}}</small>
                 </div>
@@ -22,7 +22,7 @@
 <div class="row wrap-white">
     <div *ngFor="let topProduct of topProducts" class="col-lg-3 col-md-4 col-6">
         <a href="/product-detail/{{topProduct.id}}" class="card my-2 red-border">
-            <img class="card-img-top" src="{{topProduct.image[0]}}" alt="">
+            <img style="height: 296px;" class="card-img-top" src="{{topProduct.image[0]}}" alt="">
             <div class="card-body text-center">
                 <small class="card-title">{{topProduct.name}}</small>
                 <br>
@@ -42,7 +42,7 @@
 <div class="row wrap-white">
     <div *ngFor="let i of newProducts" class="col-lg-3 col-md-4 col-6">
         <a href="/product-detail/{{i.id}}" class="card my-2 red-border">
-            <img class="card-img-top" src="{{i.image[0]}}" alt="">
+            <img style="height: 296px;" class="card-img-top" src="{{i.image[0]}}" alt="">
             <div class="card-body text-center">
                 <small class="card-title">{{i.name}}</small>
                 <br>
